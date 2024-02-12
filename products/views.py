@@ -13,3 +13,6 @@ def product_detail(request, id, slug):
     categories = Category.objects.all()
     return render(request, 'products/detail.html', context={'product': product, 'categories': categories})
 
+
+def cart_products(request):
+    return render(request, 'products/cart-products.html', context={})
