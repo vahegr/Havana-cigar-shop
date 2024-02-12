@@ -907,18 +907,30 @@ footer .inner-content p a {
 /* Send Message */
 
 .send-message {
-	margin-top: 100px;
+	margin-top: -60px;
+	margin-bottom: -120px;
+}
+
+.send-message h2{
+	text-align: center;
 }
 
 .contact-form input {
 	font-size: 14px;
-	width: 100%;
+	width: 40%;
 	height: 44px;
 	display: inline-block;
 	line-height: 42px;
-	border: 1px solid #eee;
-	border-radius: 0px;
+	border: 1px solid rgb(252, 247, 247);
+	border-radius: 5px;
 	margin-bottom: 30px;
+	text-align: left;
+}
+
+.contact-form i{
+	color: rgb(131, 130, 130);
+	font-size: 14px;
+	text-align: left;
 }
 
 .contact-form input:focus {
@@ -936,6 +948,7 @@ footer .inner-content p a {
 	border: 1px solid #eee;
 	border-radius: 0px;
 	margin-bottom: 30px;
+	text-align: center;
 }
 
 .contact-form textarea:focus {
