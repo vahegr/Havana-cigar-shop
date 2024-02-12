@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Havana Cigar Shop | products
+{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"><h2>Sixteen <em>Clothing</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link active" href="products.html">Our Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Login/Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link-cart" href="#">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> 2
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    
+    <div class="detail-page-heading header-text">
+        <div class="best-features about-features">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="filters">
+                      <ul>
+                          <li>All Products</li>
+                          {% for item in categories %}
+                              <li>{{ item.title }}</li>
+                          {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                <div class="col-md-12">
+                  <div class="section-heading">
+                    <h2>{{ product.title }}</h2>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="right-image">
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="left-content">
+                    <h4>{{ product.title }}</h4>
+                    <p>{{ product.description }}</p>
+                    <ul class="featured-list">
+                      <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                      <li><a href="#">Consectetur an adipisicing elit</a></li>
+                      <li><a href="#">It aquecorporis nulla aspernatur</a></li>
+                      <li><a href="#">Corporis, omnis doloremque</a></li>
+                      <li><a href="#">Non cum id reprehenderit</a></li>
+                    </ul>
+                    <a href="#" class="filled-button">add to cart</a>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+
+    
+
+    
+    <div class="latest-products">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="section-heading">
+                <h2>Similar Products</h2>
+                <a href="products.html">view all products <i class="fa fa-angle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="product-item">
+                <a href="#"><img src="assets/images/product_01.jpg" alt=""></a>
+                <div class="down-content">
+                  <a href="#"><h4>Tittle goes here</h4></a>
+                  <h6>$25.75</h6>
+                  <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                  <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                  <span>Reviews (24)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="product-item">
+                <a href="#"><img src="assets/images/product_02.jpg" alt=""></a>
+                <div class="down-content">
+                  <a href="#"><h4>Tittle goes here</h4></a>
+                  <h6>$30.25</h6>
+                  <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                  <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                  <span>Reviews (21)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="product-item">
+                <a href="#"><img src="assets/images/product_03.jpg" alt=""></a>
+                <div class="down-content">
+                  <a href="#"><h4>Tittle goes here</h4></a>
+                  <h6>$20.45</h6>
+                  <p>Sixteen Clothing is free CSS template provided by TemplateMo.</p>
+                  <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                  <span>Reviews (36)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="product-item">
+                <a href="#"><img src="assets/images/product_04.jpg" alt=""></a>
+                <div class="down-content">
+                  <a href="#"><h4>Tittle goes here</h4></a>
+                  <h6>$15.25</h6>
+                  <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                  <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                  <span>Reviews (48)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="product-item">
+                <a href="#"><img src="assets/images/product_05.jpg" alt=""></a>
+                <div class="down-content">
+                  <a href="#"><h4>Tittle goes here</h4></a>
+                  <h6>$12.50</h6>
+                  <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                  <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                  <span>Reviews (16)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="product-item">
+                <a href="#"><img src="assets/images/product_06.jpg" alt=""></a>
+                <div class="down-content">
+                  <a href="#"><h4>Tittle goes here</h4></a>
+                  <h6>$22.50</h6>
+                  <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                  <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                  <span>Reviews (32)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  </body>
+{% endblock %}
+</html>
