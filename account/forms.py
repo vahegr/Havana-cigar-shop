@@ -9,14 +9,16 @@ from .models import User
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "field", "placeholder": "گذرواژه"}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "field", "placeholder": "تکرار گذرواژه"}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'ایمیل'}))
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'نام کاربری'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Password"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Repeat Password"}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "form-control", 'placeholder': 'Email'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", 'placeholder': 'Username'}))
+    full_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", 'placeholder': 'Full Name'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", 'placeholder': 'Phone'}))
 
     class Meta:
         model = User
-        fields = ('email', 'username')
+        fields = ('email', 'username', 'full_name', 'phone')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -48,7 +50,7 @@ class UserChangeForm(forms.ModelForm):
 
 
 class LogInForm(forms.Form):
-    email = forms.CharField(widget=forms.TextInput(attrs={"class": "email-input", "placeholder": "پست الکترونیک"}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "password-input", "placeholder": "گذرواژه"}))
+    email = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Email"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Password"}))
 
 
