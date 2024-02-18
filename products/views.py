@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
+from django.views import View
+
 from .models import Product, Category
 
 
@@ -16,3 +18,9 @@ def product_detail(request, id, slug):
 
 def cart_products(request):
     return render(request, 'products/cart-products.html', context={})
+
+
+class CartAddView(View):
+    def post(self, request, id):
+        product = Product.objects.get(id=id)
+        return redirect('products:cart_products')

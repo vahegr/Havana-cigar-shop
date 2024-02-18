@@ -93,7 +93,9 @@
                       <li><a href="#">Corporis, omnis doloremque</a></li>
                       <li><a href="#">Non cum id reprehenderit</a></li>
                     </ul>
-                    <a href="#" class="filled-button">add to cart</a>
+                      <form action="{% url 'products:cart_add_products' product.id %}" method="post">
+                        <button style="border: none"><a type="submit" class="filled-button">add to cart</a></button>
+                      </form>
                   </div>
                   <hr>
                 </div>
