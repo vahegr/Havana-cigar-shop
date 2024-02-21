@@ -19,8 +19,13 @@ class Category(models.Model):
     #     return reverse('videos:category detail', args=[self.id, self.slug])
 
 
+class StateOfProduct(models.Model):
+    title = models.CharField(max_length=100)
+
+
 class Product(models.Model):
     category = models.ManyToManyField(Category)
+    state_of_product = models.ManyToManyField(StateOfProduct)
     image = models.ImageField(upload_to='product/images')
     title = models.CharField(max_length=150)
     price = models.DecimalField(max_digits=50, decimal_places=2)

@@ -75,6 +75,7 @@
                 <div class="col-md-12">
                   <div class="section-heading">
                     <h2>{{ product.title }}</h2>
+
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -85,6 +86,7 @@
                 <div class="col-md-6">
                   <div class="left-content">
                     <h4>{{ product.title }}</h4>
+                    <h4>{{ product.price }}</h4>
                     <p>{{ product.description }}</p>
                     <ul class="featured-list">
                       <li><a href="#">Lorem ipsum dolor sit amet</a></li>
@@ -94,7 +96,30 @@
                       <li><a href="#">Non cum id reprehenderit</a></li>
                     </ul>
                       <form action="{% url 'products:cart_add_products' product.id %}" method="post">
-                        <button style="border: none"><a type="submit" class="filled-button">add to cart</a></button>
+                          {% csrf_token %}
+                            {% for item in product.state_of_product.all %}
+                          <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" value="{{ item.title }}" id="{{ item.title }}" name="state_of_product">
+                                <label class="custom-control-label" for="{{ item.title }}">{{ item.title }}</label>
+                            </div>
+                          {% endfor %}
+
+
+                          <div class="input-group quantity mr-3" style="width: 130px;">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-minus">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" value="1" name="quantity">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-plus">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" style="border: none"><a class="filled-button"><i class="fa fa-shopping-cart"></i> add to cart</a></button>
                       </form>
                   </div>
                   <hr>

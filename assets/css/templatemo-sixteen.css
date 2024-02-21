@@ -679,6 +679,33 @@ footer .inner-content p a {
 	color: #f33f3f;
   }
 
+.custom-control {
+	margin: 15px 10px 15px 0px;
+}
+
+.input-group{
+	padding-top: 8px;
+	margin-left: 4px;
+}
+
+.input-group input{
+	width: 45px;
+	text-align: center;
+	border: none;
+}
+
+.input-group-btn button{
+	background-color: #f33f3f;
+	border-color: #f33f3f;
+	margin-left: 1px;
+	margin-right: 1px;
+}
+
+.input-group-btn button:hover{
+	background-color: #d51b1b;
+	border-color: #d51b1b;
+}
+
 .products {
 	margin-top: 100px;
 }
