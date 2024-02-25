@@ -22,32 +22,32 @@
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>Sixteen <em>Clothing</em></h2></a>
+          <a class="navbar-brand" href="{% url 'home:home' %}"><h2><em>Havana</em> Cigar</h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home
+                <a class="nav-link" href="{% url 'home:home' %}">Home
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="products.html">Our Products</a>
+                <a class="nav-link active" href="{% url 'products:products' %}">Our Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="{% url 'home:about_us' %}">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact Us</a>
+                <a class="nav-link" href="{% url 'home:contact_us' %}">Contact Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Login/Register</a>
+                <a class="nav-link" href="{% url 'account:log in' %}">Login/Register</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link-cart" href="#">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> 2
+                <a class="nav-link-cart" href="{% url 'products:cart_products' %}">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 </a>
               </li>
 
@@ -78,9 +78,9 @@
           <div class="col-md-12">
             <div class="filters">
               <ul>
-                    <li>All Products</li>
+                    <li><a href="{% url 'products:products' %}">All Products</a></li>
                   {% for item in categories %}
-                    <li>{{ item.title }}</li>
+                    <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
                   {% endfor %}
               </ul>
             </div>
@@ -111,15 +111,23 @@
                 </div>
             </div>
           </div>
+
           <div class="col-md-12">
             <ul class="pages">
-              <li><a href="#">1</a></li>
-              <li class="active"><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                {% if products.has_previous %}
+                    <li><a href="?page={{ products.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a></li>
+                    <li><a href="?page={{ products.previous_page_number }}">{{ products.previous_page_number }}</a></li>
+                {% endif %}
+              <li class="active"><a href="?page={{ products.number }}">{{ products.number }}</a></li>
+                {% if products.has_next %}
+                    <li><a href="?page={{ products.next_page_number }}">{{ products.next_page_number }}</a></li>
+
+                    <li><a href="?page={{ products.next_page_number }}"><i class="fa fa-angle-double-right"></i></a></li>
+                {% endif %}
+
             </ul>
           </div>
+
         </div>
       </div>
     </div>

@@ -26,12 +26,22 @@ class Cart:
         result = f'{id}-{state_of_product}'
         return result
 
+    def clear_cart(self):
+        del self.session[CART_SESSION_ID]
+
     def add(self, product, quantity, state_of_product):
         unique = self.unique_id_generator(product.id, state_of_product)
         if unique not in self.cart:
             self.cart[unique] = {'quantity': 0, 'price': float(product.price), 'state_of_product': state_of_product, 'id': product.id}
         self.cart[unique]['quantity'] += int(quantity)
         self.save()
+
+    def total(self):
+        cart = self.cart.values()
+        total = 0
+        for item in cart:
+            total += item['total']
+        return total
 
     def delete(self, id):
         if id in self.cart:

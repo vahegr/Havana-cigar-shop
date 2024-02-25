@@ -103,8 +103,8 @@
                           <div class="inner-content">
                             <div class="row">
                               <div class="col-md-8">
-                                <h4>Total = $67.88</h4>
-                                <p>Bolivar Cigar = $11.10, Cohiba Cigar = $22.33, Gurkha Cigar = $44.11</p>
+                                <h4>Total = ${{ cart.total }}</h4>
+                                <p>{% for item in cart %} {{ item.product.title }} = ${{ item.price }}, {% endfor %}</p>
                               </div>
                               <div class="col-md-4">
                                 <a href="#" class="filled-button">Purchase Now</a>
