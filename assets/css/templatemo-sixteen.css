@@ -653,7 +653,18 @@ footer .inner-content p a {
 	cursor: pointer;
 }
 
-.latest-products .filters ul li:hover {
+.latest-products .filters li a{
+	text-transform: uppercase;
+	font-size: 15px;
+	font-weight: 700;
+	color: #121212;
+	display: inline-block;
+	margin: 0px 10px;
+	transition: all .3s;
+	cursor: pointer;
+}
+
+.latest-products .filters ul li a:hover {
 	color: #f33f3f;
   }
 
@@ -717,7 +728,18 @@ footer .inner-content p a {
 	margin-bottom: 60px;
 }
 
-.products .filters li {
+.products .filters li a{
+	text-transform: uppercase;
+	font-size: 15px;
+	font-weight: 700;
+	color: #121212;
+	display: inline-block;
+	margin: 0px 10px;
+	transition: all .3s;
+	cursor: pointer;
+}
+
+.products .filters li{
 	text-transform: uppercase;
 	font-size: 15px;
 	font-weight: 700;
@@ -729,9 +751,10 @@ footer .inner-content p a {
 }
 
 .products .filters ul li.active,
-.products .filters ul li:hover {
+.products .filters ul li a:hover {
   color: #f33f3f;
 }
+
 
 .products ul.pages {
 	margin-top: 30px;
@@ -941,6 +964,18 @@ footer .inner-content p a {
 .send-message h2{
 	text-align: center;
 }
+
+/*.order-form input{*/
+/*	font-size: 14px;*/
+/*	width: 40%;*/
+/*	height: 44px;*/
+/*	display: inline-block;*/
+/*	line-height: 42px;*/
+/*	border: 1px solid rgb(252, 247, 247);*/
+/*	border-radius: 5px;*/
+/*	margin-bottom: 30px;*/
+/*	text-align: left;*/
+/*}*/
 
 .contact-form input {
 	font-size: 14px;
