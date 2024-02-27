@@ -89,15 +89,15 @@ a.filled-button:hover {
 }
 
 .products-heading {
-	background-image: url(../images/products-heading.jpg);
+	background-image: url(../images/cigar1.jpg);
 }
 
 .about-heading {
-	background-image: url(../images/about-heading.jpg);
+	background-image: url(../images/cigar1.jpg);
 }
 
 .contact-heading {
-	background-image: url(../images/contact-heading.jpg);
+	background-image: url(../images/cigar1.jpg);
 }
 
 .detail-page-heading{
@@ -344,7 +344,7 @@ header .navbar {
 
 .banner-item-01 {
 	padding: 300px 0px;
-	background-image: url(../images/cigar1.jfif);
+	background-image: url(../images/cigar1.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -353,7 +353,7 @@ header .navbar {
 
 .banner-item-02 {
 	padding: 300px 0px;
-	background-image: url(../images/cigar2.jfif);
+	background-image: url(../images/cigar2.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -361,7 +361,7 @@ header .navbar {
 
 .banner-item-03 {
 	padding: 300px 0px;
-	background-image: url(../images/cigar4.jfif);
+	background-image: url(../images/cigar3.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -455,6 +455,7 @@ header .navbar {
 
 .product-item img {
 	width: 100%;
+	height: 300px;
 	overflow: hidden;
 }
 

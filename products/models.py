@@ -8,7 +8,7 @@ from account.models import User
 class Category(models.Model):
     title = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField()
+    slug = models.SlugField(blank=True)
 
     def __str__(self):
         return self.title
