@@ -54,6 +54,14 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+    payment_methods = (
+        ('1', 'Zelle'),
+        ('2', 'Venmo'),
+        ('3', 'Apple Pay'),
+        ('4', 'WeChat'),
+        ('5', 'Direct Bank Transfer'),
+        ('6', 'Western Union Transfer'),
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     name = models.CharField(max_length=250)
     email_address = models.EmailField(max_length=200)
@@ -63,6 +71,7 @@ class Order(models.Model):
     post_code = models.CharField(max_length=250)
     total_price = models.DecimalField(max_digits=60, decimal_places=2, default=0)
     details_text = models.TextField(max_length=500, blank=True)
+    payment_methods = models.CharField(max_length=1, choices=payment_methods, default='1', )
     created_at = models.DateTimeField(auto_now_add=True)
     is_paid = models.BooleanField(default=False)
 

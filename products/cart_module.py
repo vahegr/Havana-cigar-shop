@@ -32,15 +32,19 @@ class Cart:
     def add(self, product, quantity, state_of_product):
         unique = self.unique_id_generator(product.id, state_of_product)
         if unique not in self.cart:
-            self.cart[unique] = {'quantity': 0, 'price': float(product.price), 'state_of_product': state_of_product, 'id': product.id}
+            if state_of_product == 'Box':
+                self.cart[unique] = {'quantity': 0, 'price': float(product.price), 'state_of_product': state_of_product, 'id': product.id}
+            else:
+                self.cart[unique] = {'quantity': 0, 'price': float(product.single_cigar_price), 'state_of_product': state_of_product, 'id': product.id}
         self.cart[unique]['quantity'] += int(quantity)
         self.save()
 
     def total(self):
         cart = self.cart.values()
-        total = 0
-        for item in cart:
-            total += item['total']
+        total = sum(float(item['price']) * item['quantity'] for item in cart)
+        # total = 0
+        # for item in cart:
+        #     total += float(item['total'])
         return total
 
     def delete(self, id):

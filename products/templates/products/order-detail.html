@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-    Havana Cigar Shop | products
+    Havana Cigar Shop | your order details
 {% endblock %}
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +64,7 @@
           <div class="col-md-12">
             <div class="text-content">
               <h4>havana cigar shop</h4>
-              <h2>Cart Products</h2>
+              <h2>Order Details</h2>
             </div>
           </div>
         </div>
@@ -73,12 +73,56 @@
 
     
     <div class="products">
+    <h4 style="color: black; text-align: center;">Total Price to pay = ${{ order.total_price }}</h4><br>
+    {% if order.user == request.user %}
+        <h4 style="color: black; text-align: center;">An email will be sent to your email address to pay in next few hours. </h4>
+    {% endif %}
+        <div class="call-to-action">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="inner-content">
+                            <div class="row">
+                                <div style="text-align: left" class="col-md-4">
+                                    <h4>Name</h4>
+                                    <p>{{ order.name }}</p>
+                                    <br>
+                                    <h4>Email Address</h4>
+                                    <p>{{ order.email_address }}</p>
+                                    <br>
+                                    <h4>Phone Number</h4>
+                                    <p>{{ order.phone_number }}</p>
+                                    <br>
+                                    <h4>City</h4>
+                                    <p>{{ order.city }}</p>
+
+
+                                </div>
+                                <div style="text-align: left" class="col-md-4">
+
+                                    <h4>Zip Code</h4>
+                                    <p>{{ order.zip_code }}</p>
+                                    <br>
+                                    <h4>Post Code</h4>
+                                    <p>{{ order.post_code }}</p>
+                                    <br>
+                                    <h4>More Details</h4>
+                                    <p>{{ order.details_text }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="filters-content">
                 <div class="row grid">
-                    {% for item in cart %}
+                    {% for item in order.items.all %}
                         <div class="col-lg-4 col-md-4 all des">
                       <div class="product-item">
                         <a href="#"><img src="{{ item.product.image.url }}" alt="{{ item.product.title }}"></a>
@@ -88,33 +132,14 @@
                           <p>{{ item.product.description }}</p>
                           <p style="color: red">{{ item.state_of_product }}</p>
                           <p style="color: red">Quantity ({{ item.quantity }})</p>
-                            <p style="color: red">Total ${{ item.total }}</p>
-                          <span><a href="{% url 'products:remove_cart_product' item.unique_id %}">Remove</a></span>
+                            <p style="color: red">Total ${{ item.price }}</p>
+
                         </div>
                       </div>
                     </div>
                     {% endfor %}
                     
                 </div>
-                <div class="call-to-action">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="inner-content">
-                            <div class="row">
-                              <div class="col-md-8">
-                                <h4>Total = ${{ cart.total }}</h4>
-                                <p>{% for item in cart %} {{ item.product.title }} = ${{ item.price }}, {% endfor %}</p>
-                              </div>
-                              <div class="col-md-4">
-                                <a href="{% url 'products:order_create' %}" class="filled-button">Purchase Now</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
             </div>
           </div>
           

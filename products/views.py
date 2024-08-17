@@ -1,6 +1,10 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views import View
 from django.views.generic import ListView
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 from django.core.paginator import Paginator
 from .models import Product, Category, Order, OrderItem
 from .cart_module import Cart
@@ -19,6 +23,7 @@ def all_products_view(request):
 def product_detail(request, id, slug):
     product = Product.objects.get(id=id, slug=slug)
     categories = Category.objects.all()
+    similar_products = Product.objects.filter(category=product.category.first())
     return render(request, 'products/detail.html', context={'product': product, 'categories': categories})
 
 
@@ -53,20 +58,68 @@ class CartRemoveView(View):
         return redirect('products:cart_products')
 
 
-class OrderDetailView(View):
+# def order_create(request):
+#     if request.method == 'POST':
+#         form = OrderCreationForm(request.POST)
+#         if form.is_valid():
+#             instance = form.save(commit=False)
+#             instance.user = request.user
+#             instance.save()
+#             return redirect(reverse('products:order_item_create', args=[instance.id]))
+#         else:
+#             form = OrderCreationForm()
+#         return render(request, 'products/order-create.html', context={'form': form})
+
+
+class OrderDetailView(LoginRequiredMixin, View):
     def get(self, request, id):
-        pass
+        order = Order.objects.get(id=id)
+        if order.user_id == request.user.id or request.user.is_admin:
+            return render(request, 'products/order-detail.html', context={'order': order})
+        else:
+            return redirect('home:home')
 
 
+@login_required
 def order_create(request):
-    form = OrderCreationForm()
+    cart = Cart(request)
+    if request.method == 'POST':
+        form = OrderCreationForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user = request.user
+            order.total_price = float(cart.total())
+            order.save()
+            for item in cart:
+                OrderItem.objects.create(order=order, product=item['product'], state_of_product=item['state_of_product'], quantity=item['quantity'], price=item['price'])
+                cart.clear_cart()
+
+                # send an email to the owner of the website that he gets an new order.
+                send_to_owner_mail_subject = f'New Order, Customer email:{form.cleaned_data.get("email_address")}'
+                send_to_owner_message = f'new order click the link to see the details: https://rarecubancigars.org/products/order-detail/{order.id}'
+
+                send_to_owner_email = EmailMessage(
+                    send_to_owner_mail_subject, send_to_owner_message, to=['vahegrigorian447@gmail.com']
+                )
+                send_to_owner_email.send()
+
+                # send an email to the customer email address that he ordered his stuff successfuly.
+                send_to_customer_mail_subject = 'Your order has been successfully placed'
+                send_to_customer_message = f'Your order has been successfully placed. click the link to see the details: https://rarecubancigars.org/products/order-detail/{order.id}'
+
+                send_to_customer_email = EmailMessage(
+                    send_to_customer_mail_subject, send_to_customer_message, to=[form.cleaned_data.get('email_address')]
+                )
+                send_to_customer_email.send()
+            return redirect('products:order_detail', order.id)
+    else:
+        form = OrderCreationForm()
     return render(request, 'products/order-create.html', context={'form': form})
 
 
-# class OrderCreateView(View):
+# class OrderItemCreateView(View):
 #     def get(self, request):
 #         cart = Cart(request)
-#         order = Order.objects.create(user=request.user)
 #         for item in cart:
 #             OrderItem.objects.create(order=order, product=item['product'], state_of_product=item['state_of_product'], quantity=item['quantity'], price=item['price'])
 #         return redirect('products:order_detail', order.id)
